@@ -7,36 +7,32 @@ public class DetectCollision : MonoBehaviour
 {
     private GameManager gameManager;
     int puntuacion = 1;
-    // Start is called before the first frame update
+
+    // Start se llama antes del primer frame
     void Start()
     {
-       gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager no encontrado. Asegúrate de que el objeto GameManager existe en la escena y tiene el componente GameManager.");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Método que se llama cuando ocurre una colisión
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    void OnTriggerEnter(Collider other) {
+        if (gameObject.CompareTag("pollo") || gameObject.CompareTag("perro") || gameObject.CompareTag("cabra"))
+        {
+            Debug.Log("Colisión detectada con: " + other.gameObject.name);
             
-
-            if(gameObject.CompareTag("pollo")){
             gameManager.UpdateScore(puntuacion);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-
-            }if(gameObject.CompareTag("perro")){
-            gameManager.UpdateScore(puntuacion);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            }if(gameObject.CompareTag("cabra")){
-            gameManager.UpdateScore(puntuacion);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            }
+            Debug.Log("Puntuación actualizada: " + puntuacion);
             
-    }
+            Destroy(other.gameObject);
+            Debug.Log("Objeto colisionado destruido.");
 
+            Destroy(gameObject);
+            Debug.Log("Objeto actual destruido.");
+        }
+    }
 }
