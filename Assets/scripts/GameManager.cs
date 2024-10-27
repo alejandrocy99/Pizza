@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private int score;
     public GameObject gameOverUI;
+     public GameObject gameOverUI2;
 
     public float speed;
     // Start is called before the first frame update
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
 
        public void HideGameOverUI()
     {
-        gameOverUI.SetActive(false);
+        gameOverUI2.SetActive(false);
     }
 
     public void EasyMode(){
