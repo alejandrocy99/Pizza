@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using System.Runtime.CompilerServices;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class GameManager : MonoBehaviour
      public GameObject gameOverUI2;
 
     public float speed;
+    public float timeSpaw ;
+
+    public Vector3 nuevaEscala;
     // Start is called before the first frame update
     void Start()
     {
         
         score = 0;
+        timeSpaw = 1f;
         Time.timeScale = 0f;
 
         UpdateScore(0);
@@ -51,17 +56,21 @@ public class GameManager : MonoBehaviour
 
     public void EasyMode(){
         speed = 5f;
+        timeSpaw = 1f;
         HideGameOverUI(); 
         Time.timeScale = 1f;
     }
     public void MediumMode(){
         speed = 10f;
+        timeSpaw = 1.5f;
         HideGameOverUI(); 
         Time.timeScale = 1f;
     }
     public void HarMode(){
         speed = 15f;
+        timeSpaw = 2f;
         HideGameOverUI(); 
+        nuevaEscala = new Vector3(5f, 5f, 5f);
         Time.timeScale = 1f;
     }
 }
